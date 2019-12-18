@@ -1,0 +1,11 @@
+<!-- Create a sever component for each in the array of objects -->
+
+<!-- Loop through to make each element -->
+<div class="row border mt-2 mb-2 p-3 rounded"> <!-- loop through servers array in component.ts file -->
+    <div class="col">
+        <h4>Server Name: {{serverName}}</h4>
+        <!-- ngStyle attribute directive condition -->
+        <p [ngStyle]="{'background-color': serverStatus == 'Online' ? 'green' : 'red'}">Status: {{serverStatus}}</p>
+    </div>
+</div>
+

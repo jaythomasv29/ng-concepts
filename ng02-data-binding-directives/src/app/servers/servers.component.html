@@ -1,0 +1,28 @@
+<h2 class="mt-5">Servers Component:</h2>
+<!-- Form to add new servers -->
+<form action="">
+    <label for="serverName">Server Name:</label>
+    <!-- Two Way Data Binding -->
+    <input [(ngModel)]="serverName" class="form-control" type="text" name="serverName" id="serverName"> <!-- Two Way Data Binding -->
+    <label for="serverStatus">Server Status:</label>
+    <!-- Two Way Data Binding -->
+    <select [(ngModel)]="serverStatus" name="serverStatus" class="form-control" id="serverStatus">
+        <option value="select" disabled>Select a Status</option>
+        <option value="online">Online</option>
+        <option value="offline">Offline</option>
+    </select>
+    <!-- Event Binding (click), Property Binding [disabled]: button is also disabled if serverName is empty || serverStatus is not selected -->
+    <button [disabled]="serverName.length == 0 || !serverStatus" (click)="addServer()" class="btn btn-primary mt-3">Add Server</button>
+    <button [disabled]="serverName == ''" (click)="serverName = ''; serverStatus='select'" class="btn btn-primary ml-3 mt-3">Reset</button>
+</form>
+<!-- String Interpolation + Property Binding--> 
+<!-- Can also use *ngFor="serverName && serverStatus" -->
+<h6 [hidden]="!serverName || !serverStatus" class="mt-2">Details: Server Name: {{ serverName }} Server Status: {{ serverStatus }}</h6>
+<!-- *ngIf -->
+<p *ngIf="serverCreated; else noServer" class="text-success">Server Created Successfully</p>
+<!-- *ngIf else.. -->
+<ng-template #noServer>
+    <p class="text-primary mt-2">Current Servers:</p>
+</ng-template>
+
+<app-server *ngFor="let s of servers"></app-server>

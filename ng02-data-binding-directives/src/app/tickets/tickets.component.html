@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col">
+        <label for="description">Ticket:  <span *ngIf="description !=''" ><strong>{{description}}</strong></span></label>
+        <p *ngIf="addedTicket" class="text-success">Ticket Created!</p>
+        
+       
+        <form action="">
+            <input [(ngModel)]="description" type="text" name="description" class="mr-2" id="description">
+            <button [disabled]="addedTicket || description == ''" (click)="addTicket()" class="btn btn-primary">Add Ticket</button>
+        </form>
+        <!-- structural directive -->
+        <ul *ngFor="let t of tickets; index as i"class="row">
+            <!-- attribute directive based on ternary operator -->
+            <li [ngStyle]="{backgroundColor: i >= 2 ? 'green' : 'blue'}">{{t}} <button (click)="delete($event, item)" class=" ml-2 btn-sm btn-danger">Delete</button></li>
+        </ul>
+    </div>
+</div>
+
